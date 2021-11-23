@@ -1,0 +1,321 @@
+{
+    "openapi":"3.0.0",  
+    "info":{
+        "title":"user register Documentation",
+        "description":"This is an user register API",
+        "version":"1.0.0",
+        "contact":{
+            "email":"leonardobarrochello58@gmail.com"
+        }
+    },
+    "paths":{
+        "/users":{
+            "post":{
+                "tags":["Users"],
+                "summary":"Create a new user",
+                "description":"Create a new user",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    }
+                                }
+                            },
+                            "example":{
+                                    "name":"user name sample",
+                                    "email":"user email sample"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"Created",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{
+                                            "type":"string"
+                                        },
+                                        "name":{
+                                            "type":"string"
+                                        },
+                                        "email":{
+                                            "type":"string"
+                                        },
+                                        "admin":{
+                                            "type":"boolean"
+                                        },
+                                        "created_at":{
+                                            "type":"string"
+                                        },
+                                        "updated_at":{
+                                            "type":"string"
+                                        }
+                                    }
+                                },
+                                "example":{
+                                    
+                                        "id": "fe879155-caea-4400-a6c6-939ad118f4b0",
+                                        "name": "usuario",
+                                        "email": "usuario@gmail.com",
+                                        "admin": false,
+                                        "created_at": "2021-11-23T01:12:44.885Z",
+                                        "updated_at": "2021-11-23T01:12:44.885Z"
+                                      
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"User already exists",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "error":{
+                                            "type":"string"
+                                        }
+                                    }
+                                },
+                                "example":{      
+                                        "error": "User already exists"   
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+            "get":{
+                "tags":["Users"],
+                "summary":"List all users",
+                "description":"List all users",
+                "responses":{
+                    "200":{
+                        "description":"Success",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "properties":{
+                                            "id":{
+                                                "type":"string"
+                                            },
+                                            "name":{
+                                                "type":"string"
+                                            },
+                                            "email":{
+                                                "type":"string"
+                                            },
+                                            "admin":{
+                                                "type":"boolean"
+                                            },
+                                            "created_at":{
+                                                "type":"string"
+                                            },
+                                            "updated_at":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example":{
+                                    
+                                    "id": "fe879155-caea-4400-a6c6-939ad118f4b0",
+                                    "name": "usuario",
+                                    "email": "usuario@gmail.com",
+                                    "admin": false,
+                                    "created_at": "2021-11-23T01:12:44.885Z",
+                                    "updated_at": "2021-11-23T01:12:44.885Z"
+                                  
+                            }
+                            }
+                        }
+                    },
+                    "400":{
+                            "description":"User does not exists! / User doesn't have permission to execute this action!",
+                            "content":{
+                                "application/json":{
+                                    "schema":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "error":{
+                                                    "type":"string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example":{
+                                        "error":"User doesn't have permission to execute this action!"
+                                    }
+                                }
+                            }
+                    }
+                }
+            }
+        },
+        "/users/{user_id}":{
+            "get":{
+
+             
+            "tags":["Users"],
+            "summary":"Show a user profile",
+            "description":"Show a user profile",
+            "responses":{
+                "200":{
+                    "description":"Success",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"array",
+                                "items":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{
+                                            "type":"string"
+                                        },
+                                        "name":{
+                                            "type":"string"
+                                        },
+                                        "email":{
+                                            "type":"string"
+                                        },
+                                        "admin":{
+                                            "type":"boolean"
+                                        },
+                                        "created_at":{
+                                            "type":"string"
+                                        },
+                                        "updated_at":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            },
+                            "example":{
+                                
+                                "id": "fe879155-caea-4400-a6c6-939ad118f4b0",
+                                "name": "usuario",
+                                "email": "usuario@gmail.com",
+                                "admin": false,
+                                "created_at": "2021-11-23T01:12:44.885Z",
+                                "updated_at": "2021-11-23T01:12:44.885Z"
+                              
+                        }
+                        }
+                    }
+                },
+                "404":{
+                        "description":"User does not exists!",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "properties":{
+                                            "error":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example":{
+                                    "error":"User does not exists!"
+                                }
+                            }
+                        }
+                }
+            }
+            }
+         },
+         "/users/{user_id}/admin":{
+            "patch":{
+                "tags":["Users"],
+                "summary":"turn a user into an admin",
+                "description":"turn a user into an admin",
+                "responses":{
+                    "200":{
+                        "description":"Success",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "properties":{
+                                            "id":{
+                                                "type":"string"
+                                            },
+                                            "name":{
+                                                "type":"string"
+                                            },
+                                            "email":{
+                                                "type":"string"
+                                            },
+                                            "admin":{
+                                                "type":"boolean"
+                                            },
+                                            "created_at":{
+                                                "type":"string"
+                                            },
+                                            "updated_at":{
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example":{
+                                    
+                                    "id": "fe879155-caea-4400-a6c6-939ad118f4b0",
+                                    "name": "usuario",
+                                    "email": "usuario@gmail.com",
+                                    "admin": true,
+                                    "created_at": "2021-11-23T01:12:44.885Z",
+                                    "updated_at": "2021-11-23T01:12:44.885Z"
+                                  
+                            }
+                            }
+                        }
+                    },
+                    "404":{
+                            "description":"User does not exists!",
+                            "content":{
+                                "application/json":{
+                                    "schema":{
+                                        "type":"array",
+                                        "items":{
+                                            "type":"object",
+                                            "properties":{
+                                                "error":{
+                                                    "type":"string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example":{
+                                        "error":"User does not exists!"
+                                    }
+                                }
+                            }
+                    }
+                }
+                } 
+         }
+    }
+}
